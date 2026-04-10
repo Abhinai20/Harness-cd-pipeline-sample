@@ -29,11 +29,12 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      # 🔹 Debug step goes here
+      # 🔹 Debug step to check if SONAR_TOKEN is injected
       - name: Debug SONAR_TOKEN
         run: |
           if [ -z "${{ secrets.SONAR_TOKEN }}" ]; then
             echo "SONAR_TOKEN is NOT set"
+            exit 1
           else
             echo "SONAR_TOKEN is set"
           fi
